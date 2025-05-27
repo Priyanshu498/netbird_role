@@ -1,0 +1,7 @@
+---
+- name: Run NetBird with Zitadel setup script
+  shell: |
+    export NETBIRD_DOMAIN={{ netbird_domain }}
+    curl -fsSL https://github.com/netbirdio/netbird/releases/latest/download/getting-started-with-zitadel.sh | bash
+  args:
+    executable: /bin/bash
