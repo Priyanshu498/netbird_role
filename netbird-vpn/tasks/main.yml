@@ -1,0 +1,13 @@
+ ---
+- name: Install Docker
+  import_tasks: docker.yml
+
+- name: Add user to docker group
+  import_tasks: user.yml
+
+- name: Reboot if needed
+  import_tasks: reboot.yml
+
+- name: Install NetBird
+  import_tasks: netbird.yml
+  when: not reboot_required | default(false)
