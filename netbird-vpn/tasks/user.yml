@@ -1,0 +1,16 @@
+---
+- name: Add ubuntu user to docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: true
+
+- name: Check if reboot is required after group change
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_check
+
+- name: Set reboot_required fact
+  set_fact:
+    reboot_required: true
+  when: reboot_check.stat.exists
